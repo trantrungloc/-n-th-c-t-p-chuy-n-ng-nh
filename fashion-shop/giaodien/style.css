@@ -1,0 +1,521 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+
+}
+
+header {
+    z-index: 1000;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+     padding: 12px 20px;
+    align-items: center;
+}
+
+.logo {
+    flex: 1;
+    margin-right: 12px;
+}
+
+.logo img {
+    width: 120px;
+}
+/* ------------------------------------------------menu ------------------------------------------------------------*/
+.menu {
+    flex: 3;
+    display: flex;
+}
+
+.menu>li {
+    padding: 10px;
+    position: relative;
+}
+.menu > li:hover .sub-menu {
+   visibility: visible;
+   top:30px;
+}  
+.menu li a {
+      font-size: 13px;
+      font-weight: bold !important;
+      display: block;
+      line-height: 20px;
+  }
+
+.sub-menu {
+    position: absolute;
+    background-color: white;
+    width: 120px;
+    border: 1px solid #ccc;
+    padding: 10px 0 10px 20px;
+    visibility: hidden;
+    top: 50px;
+    transition: 0.3s;
+    z-index: 1100;
+}
+.sub-menu ul a{
+    font-weight: normal !important;
+    font-size: 14px!important;
+    
+}
+
+.sub-menu ul {
+    padding-left: 20px;
+
+}
+
+
+
+.others {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto; /* đẩy sang phải */
+  list-style: none;
+  padding: 0;
+}
+
+/* từng item */
+.others > li {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0 6px;
+}
+
+/* input tìm kiếm: dạng pill, canh giữa nội dung */
+.others > li:first-child input {
+  width: 260px;
+  max-width: 320px;
+  min-width: 140px;
+  padding: 8px 36px 8px 12px;
+  border: 1px solid #e6e6e6;
+  border-radius: 22px;
+  background: #fff;
+  font-size: 14px;
+  color: #222;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  transition: border-color .15s, box-shadow .15s;
+}
+
+/* placeholder */
+.others > li:first-child input::placeholder {
+  color: #9b9b9b;
+}
+
+/* focus */
+.others > li:first-child input:focus {
+  outline: none;
+  border-color: #333;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* icon tìm kiếm nằm bên phải input */
+.others > li:first-child i {
+  position: absolute;
+  right: 10px;
+  font-size: 14px;
+  color: #999;
+  pointer-events: none;
+}
+
+/* các icon khác (user, cart, ...) */
+.others > li a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  text-decoration: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: background .12s, color .12s;
+}
+.others > li a:hover {
+  background: rgba(0,0,0,0.06);
+  color: #000;
+}
+
+/* -------------------------------------------slider ----------------------------*/
+.aspect-ratio-169 {
+     position: relative;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 28%;        /* giảm chiều cao (thay % để chỉnh cao/thấp) */
+    overflow: hidden;        /* cần để clip ảnh theo border-radius */
+    border-radius: 50px 0 50px 0;
+  
+}
+
+#Slider{
+     position: relative;
+  width: 100%;
+  max-width: 1500px;
+  margin: 30px auto;
+  overflow: hidden;
+             /* Bo góc container */
+  background: #fff;
+  padding: 10px;                     /* Tạo khoảng cách để thấy viền */
+  
+   
+}
+.slider-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.slider-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+   width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    
+}
+
+.slider-track img {
+   width: 100%;
+    height: 100%;
+    object-fit: fill;
+    flex: 0 0 100%;
+    border-radius: 0;  
+}
+
+/*---------------------- mũi tên --------------------------*/
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;          /* Không nền */
+  border: none;              /* Không viền */
+  padding: 0;
+  width: auto;
+  height: auto;
+  color: #bfbfbf;            /* Màu xám nhạt */
+  font-size: 32px;           /* Cỡ vừa, thanh */
+  font-weight: 300;          /* Mảnh */
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.2s ease;
+}
+
+.arrow.prev { left: 12px; }   /* Tùy chỉnh vị trí */
+.arrow.next { right: 12px; }
+
+.arrow:hover {
+  color: #000;                /* Hover chỉ đổi màu */
+}
+
+.arrow:focus { outline: none; }
+/*----------------------end mũi tên --------------------------*/
+/*---------------------- chấm --------------------------*/
+.dot-container
+{
+      position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+.dot{
+width: 10px;
+  height: 10px;
+  background: #d1d1d1;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+ .active{
+      background: #000;
+  transform: scale(1.3);
+}
+#Slider,
+.aspect-ratio-169,
+.slider-container,
+.slider-track {
+    z-index: 0;
+} 
+ .arrow { z-index: 50; }
+.dot-container { z-index: 40; }
+.dot:hover {
+  cursor: pointer;
+    background: #333;
+    transform: scale(1.2);
+} 
+/*---------------------- end chấm --------------------------*/
+
+/* -----------------------------------------app---------------------------- */
+
+/* App / Newsletter container styles (matching the provided design) */
+.app-container{
+    text-align: center;
+    padding: 48px 12px 36px; /* top, sides, bottom */
+    background: #fff;
+    color: #111;
+}
+
+.app-container > p.title-app{
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    letter-spacing: 0.2px;
+}
+
+.app-google{
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    align-items: center;
+    margin-bottom: 22px;
+}
+.app-google img{
+    height: 44px;
+    width: auto;
+    display: inline-block;
+}
+
+.app-container p.title-newsletter{
+    margin-top: 8px;
+    margin-bottom: 12px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+/* Centered underline input for newsletter */
+.app-container .newsletter-input{
+    width: 60%;
+    max-width: 520px;
+    min-width: 220px;
+    padding: 10px 12px;
+    border: none;
+    border-bottom: 2px solid #d1d1d1;
+    outline: none;
+    text-align: center;
+    font-size: 15px;
+    color: #333;
+    background: transparent;
+    transition: border-color .15s ease;
+}
+.app-container .newsletter-input::placeholder{
+    color: #999;
+}
+.app-container .newsletter-input:focus{
+    border-bottom-color: #333;
+}
+
+/* Footer links row (centered) */
+.footer-links{
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    margin: 18px 0 8px;
+    flex-wrap: wrap;
+}
+.footer-links a{
+    color: #333;
+    font-size: 14px;
+}
+
+.trust-badge{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.site-footer{
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    padding: 14px 10px;
+    border-top: 1px solid #e6e6e6;
+}
+/* ---------------------------------------------------------arrival------------------------ */
+
+/* Arrival section */
+.arrival {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.arrival h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.arrival-tabs {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.arrival-tabs .tab {
+    background: none;
+    border: none;
+    font-size: 15px;
+    padding: 5px 15px;
+    color: #666;
+    cursor: pointer;
+    position: relative;
+}
+
+.arrival-tabs .tab.active {
+    color: #000;
+}
+
+.arrival-tabs .tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #000;
+}
+
+.arrival-items {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.arrival-item {
+    position: relative;
+}
+
+.product-img {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-img img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+}
+
+.badge-new {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #f1a156;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+.wishlist {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #666;
+    cursor: pointer;
+}
+
+.product-info {
+    padding: 10px 0;
+}
+
+.product-info h3 {
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.color-options {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.color-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #000;
+    border: 1px solid #ddd;
+}
+
+.add-cart {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Hide inactive content */
+.arrival-items {
+    display: none;
+}
+
+.arrival-items.active {
+    display: grid;
+}
+
+/* --------------------------------------end arrival ------------------------ */
+
+
+
+/* -------------------------------------responsive ------------------------ */
+/* responsive breakpoints */
+@media (max-width: 1200px) {
+  .arrival-items { grid-template-columns: repeat(4,1fr); }
+  .arrival-item .thumb img { height: 300px; }
+}
+@media (max-width: 900px) {
+  .arrival-items { grid-template-columns: repeat(3,1fr); gap:20px; }
+  .arrival-item .thumb img { height: 260px; }
+}
+@media (max-width: 600px) {
+  .arrival-items { grid-template-columns: repeat(2,1fr); gap:14px; }
+  .arrival-item .thumb img { height: 220px; }
+  .arrival h2 { font-size: 22px; }
+}
+@media (max-width: 420px) {
+  .arrival-items { grid-template-columns: 1fr; }
+  .arrival-item .thumb img { height: 360px; }
+}
+/* Responsive tweaks */
+@media (max-width: 768px){
+    .app-google img{ height: 36px; }
+    .app-container .newsletter-input{ width: 84%; }
+}
+.others > li:first-child { margin-right: 6px; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .others > li:first-child input { width: 190px; }
+}
+@media (max-width: 480px) {
+  .others > li:first-child input { width: 120px; padding-left: 10px; padding-right: 34px; font-size:13px; }
+  header { padding: 8px 10px; }
+}
+
+
+

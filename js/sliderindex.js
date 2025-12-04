@@ -236,8 +236,7 @@ class ZaraSlider {
             dots[normalized].classList.add("active");
         }
     }
-
-    startAutoSlide() {
+     startAutoSlide() {
         this.resetAutoSlide();
     }
 
@@ -354,3 +353,4 @@ setTimeout(() => {
     console.log("Debug - Next button exists:", !!nextBtn);
     console.log("Debug - Slider track exists:", !!document.querySelector(".slider-track"));
 }, 1000);
+

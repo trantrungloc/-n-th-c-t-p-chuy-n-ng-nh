@@ -1,0 +1,345 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+
+}
+.container{
+    width: 1200px;
+    margin:  auto;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+header {
+background: rgba(225, 225, 225, 0.3);
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+     padding: 12px 20px;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0 ;
+    z-index: 1;
+}
+header a {
+    color: #000; /* Màu đen mặc định */
+}
+
+header a:hover,
+header a:visited,
+header a:active {
+    color: #000; /* Giữ đen khi hover, visited, hoặc active - không đổi thành tím */
+    text-decoration: none; /* Tùy chọn: bỏ gạch chân nếu cần */
+}
+
+/* Nếu muốn hover hơi nổi bật (tùy chọn, không bắt buộc) */
+header .menu > li > a:hover {
+    color: #333; /* Màu xám đậm khi hover */
+}
+header.sticky {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    transition: 0.3s;
+}
+header:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    transition: 0.3s;
+} 
+
+.logo {
+    flex: 1;
+    margin-right: 12px;
+}
+
+.logo img {
+    width: 120px;
+}
+/* ------------------------------------------------menu ------------------------------------------------------------*/
+.menu {
+    flex: 3;
+    display: flex;
+}
+
+.menu>li {
+    padding: 10px;
+    position: relative;
+}
+.menu > li:hover .sub-menu {
+   visibility: visible;
+   top: 45px;
+}  
+.menu li a {
+      font-size: 20px;
+      font-weight: bold !important;
+      display: block;
+      line-height: 20px;
+  }
+
+.sub-menu {
+    position: absolute;
+    background: #fff;
+    width: 120px;
+    border: 1px solid #ccc;
+    padding: 10px 0 10px 20px;
+    visibility: hidden;
+    top: 60px;
+    transition: 0.3s;
+    z-index: 1;
+}
+.sub-menu ul a{
+    font-weight: normal !important;
+    font-size: 14px!important;
+    
+}
+
+.sub-menu ul {
+    padding-left: 20px;
+
+}
+
+
+
+.others {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto; /* đẩy sang phải */
+  list-style: none;
+  padding: 0;
+}
+
+/* từng item */
+.others > li {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0 6px;
+}
+.others>li::after{
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 80%;  
+  background: #ccc;
+}
+/* input tìm kiếm: dạng pill, canh giữa nội dung */
+.others > li:first-child input {
+  width: 260px;
+  max-width: 320px;
+  min-width: 140px;
+  padding: 8px 36px 8px 12px;
+  border: 1px solid #e6e6e6;
+  border-radius: 22px;
+  background: #fff;
+  font-size: 14px;
+  color: #222;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  transition: border-color .15s, box-shadow .15s;
+}
+.others >li:last-child::after{
+  display: none;
+}
+/* placeholder */
+.others > li:first-child input::placeholder {
+  color: #9b9b9b;
+}
+
+/* focus */
+.others > li:first-child input:focus {
+  outline: none;
+  border-color: #333;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* icon tìm kiếm nằm bên phải input */
+.others > li:first-child i {
+  position: absolute;
+  right: 10px;
+  font-size: 14px;
+  color: #999;
+  pointer-events: none;
+}
+
+/* các icon khác (user, cart, ...) */
+.others > li a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  text-decoration: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: background .12s, color .12s;
+}
+.others > li a:hover {
+  background: rgba(0,0,0,0.06);
+  color: #000;
+}
+/*-----------------------------payment ----------------------------*/
+.payment {
+    padding: 100px 0;
+}
+.payment-top-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.payment-top {
+    height: 2px;
+    width: 70%;
+    background-color: #dddddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 0 100px;
+}
+
+.payment-top-item {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #dddddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.payment-top-item i {
+    color: #dddddd;
+}
+
+.payment-top-payment {
+    border: 1px solid #0DB7EA;
+}
+
+.payment-top-payment i {
+    color: #0DB7EA;
+}
+
+.payment-content-left {
+    width: 60%;
+}
+
+.payment-content-right {
+    width: 40%;
+    border-left: 2px solid #ddd;
+    padding-left: 12px;
+}
+.payment-content-left p, label {
+    font-size: 12px;
+    font-family: var(--main-text-font);
+}
+
+.payment-content-right-button {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px dashed #dddddd;
+}
+
+.payment-content-right-button input {
+    height: 30px;
+    width: 200px;
+    margin-right: 100px;
+    padding-left: 12px;
+}
+
+.payment-content-right-button button {
+    height: 30px;
+    width: 100px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.payment-content-right-mnv {
+    margin-top: 20px;
+}   
+.payment-content-right-mnv select {
+    height: 30px;
+    width: 100%;
+    color: #75758A;
+    padding-left: 12px;
+}
+
+.payment-content-right-payment {
+    margin-top: 50px;
+    align-items: center;
+    text-align: center;
+}
+
+.payment-content-right-payment button {
+    height: 35px;
+    padding: 0 20px;
+    font-size: 12px;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid black;
+}
+
+.payment-content-right-payment button:hover {
+    background-color: black;
+    color: #fff;
+}
+
+/* -------------------------------------footer ------------------------ */
+
+footer{
+  text-align: center;
+}
+.footer-top{
+  display: flex;
+  text-align:  center;
+  justify-content: center ;
+  align-items: center;
+  margin-bottom: 20px;
+  height: 70px  ;
+}
+.footer-top img{
+  height: 50px;
+  
+}
+.footer-top li{
+  padding: 0 12px;
+  position: relative;
+
+}
+.footer-top li::after{
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 80%;  
+  background: #ccc;
+}   
+
+
+/* end footer ------------------------ */
+
+
+/* -------------------------------------responsive ------------------------ */
+

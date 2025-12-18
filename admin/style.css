@@ -1,0 +1,102 @@
+* {
+    /* Reset margin, padding và sử dụng border-box */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: black;
+    outline: none;
+}
+a {
+    /* Loại bỏ gạch chân liên kết */
+    text-decoration: none;
+}
+ul {
+    /* Loại bỏ dấu chấm danh sách */
+    list-style: none;
+}
+
+/* Định dạng Header */
+header {
+    height: 100px;
+    width: 100vw;
+    border-bottom: 2px solid #dddddd;
+    text-align: center;
+}
+
+/* Định dạng Vùng Chính Admin */
+.admin-content {
+    padding-top: 50px;
+    display: flex; /* Chia khu vực admin thành 2 cột */
+}
+
+/* --- Khu vực Sidebar Menu (Cột Trái) --- */
+.admin-content-left {
+    background-color: #dddddd;
+    width: 20%;
+    height: 100vh;
+    padding: 30px 0 0 12px; 
+}
+
+.admin-content-left > ul > li > a {
+    font-weight: bold; /* In đậm tiêu đề menu cấp 1 */
+}
+
+.admin-content-left ul li {
+    margin: 6px 0; /* Khoảng cách dọc giữa các mục */
+}
+
+.admin-content-left ul ul {
+    margin-left: 20px; /* Thụt vào cho menu cấp 2 */
+}
+
+/* --- Khu vực Nội dung Chính (Cột Phải) --- */
+.admin-content-right {
+    width: 80%; /* Chiếm phần còn lại */
+    padding: 30px 0 0 12px; 
+}
+
+.admin-content-right-cartegory_add h1 {
+    margin-bottom: 20px;
+}
+
+/* Định dạng Input */
+.admin-content-right-cartegory_add input {
+    height: 30px;
+    width: 200px;
+    padding-left: 12px;
+    margin-top: 20px;
+}
+
+/* Định dạng Button */
+.admin-content-right-cartegory_add button {
+    display: block;
+    margin-top: 10px;
+    height: 30px;
+    width: 100px;
+    cursor: pointer;
+    background-color: brown;
+    border: none;
+    color: white;
+    transition: all 0.3s ease; /* Thêm hiệu ứng chuyển đổi mượt mà */
+}
+
+/* Hiệu ứng khi di chuột qua nút */
+.admin-content-right-cartegory_add button:hover {
+    background-color: transparent; /* Nền trong suốt */
+    border: 1px solid brown; /* Viền nâu */
+    color: brown; /* Chữ nâu */
+}   
+/*--------------------cartegory_list------------------*/
+.admin-content-right-cartegory_list table {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.admin-content-right-cartegory_list table tr th, td {
+    border: 1px solid #dddddd;
+}
+
+table {
+    border-collapse: collapse;
+}

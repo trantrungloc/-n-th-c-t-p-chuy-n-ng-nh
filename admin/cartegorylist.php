@@ -31,7 +31,7 @@ $show_cartegory = $cartegory->show_cartegory();
                             <td><?php echo $result['cartegory_name'] ?></td>
                             <td><a href="cartegoryedit.php?cartegory_id=<?php echo $result['cartegory_id'] ?>">Sửa</a>
                             |<a href="cartegorydelete.php?cartegory_id=<?php echo $result['cartegory_id'] ?>">Xóa</a>
-                            |<a href="cartegoryadd.php?cartegory_id=<?php echo $result['cartegory_id'] ?>">Thêm</a></td>
+                            </td>
                         </tr>
                 <?php
                     }

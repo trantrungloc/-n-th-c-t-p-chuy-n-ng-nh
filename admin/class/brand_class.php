@@ -1,6 +1,6 @@
 <?php
-// Nhúng file kết nối database
-include "database.php";
+// Nhúng file kết nối database với đường dẫn tuyệt đối từ thư mục class
+include __DIR__ . '/../database.php';
 ?>
 
 <?php

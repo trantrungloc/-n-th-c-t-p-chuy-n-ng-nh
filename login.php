@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Session::set('user_id', $data['user_id']);
         Session::set('user_name', $data['name']);
         Session::set('user_email', $data['email']);
-        header('Location: html/index.html');
+        header('Location: html/index.php');
         exit;
     }
     $message = $data;
@@ -31,39 +31,139 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Đăng nhập</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; background: #f5f6fa; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .auth-box { background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); width: 360px; }
-        h2 { margin: 0 0 16px; font-size: 20px; }
-        form { display: flex; flex-direction: column; gap: 12px; }
-        label { font-size: 14px; color: #444; }
-        input { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
-        button { padding: 12px; background: #222; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
-        button:hover { background: #111; }
-        .note { margin-top: 10px; font-size: 13px; color: #555; }
-        .alert { background: #e8f7ec; color: #1e8449; padding: 10px; border-radius: 4px; font-size: 13px; margin-bottom: 8px; }
-        .alert.error { background: #ffecec; color: #c0392b; }
+        :root {
+            --bg: linear-gradient(135deg, #10141c, #1f2533);
+            --card: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.2);
+            --text: #eef1f7;
+            --accent: #f7c948;
+            --muted: #c6ccda;
+            --error: #ff5f6d;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .shell {
+            width: min(960px, 100%);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+        }
+        .hero {
+            background: url('/images/slider3.jpg') center/cover no-repeat;
+            position: relative;
+            min-height: 320px;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(16,20,28,0.6), rgba(16,20,28,0.9));
+        }
+        .hero .overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+            gap: 8px;
+            z-index: 1;
+        }
+        .hero h1 { margin: 0; font-size: 26px; }
+        .hero p { margin: 0; color: var(--muted); }
+
+        .auth-box {
+            padding: 32px 28px 28px;
+            backdrop-filter: blur(10px);
+        }
+        .auth-box h2 { margin: 0 0 12px; font-size: 22px; }
+        .sub { margin: 0 0 20px; color: var(--muted); font-size: 14px; }
+        form { display: flex; flex-direction: column; gap: 14px; }
+        label { font-size: 13px; color: var(--muted); }
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.06);
+            color: var(--text);
+            font-size: 14px;
+        }
+        input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+        button {
+            margin-top: 4px;
+            padding: 13px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f7c948, #f59e0b);
+            color: #1b1f2a;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s ease, box-shadow 0.2s ease;
+        }
+        button:hover { transform: translateY(-1px); box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
+        .note { margin-top: 16px; font-size: 13px; color: var(--muted); }
+        .note a { color: var(--accent); text-decoration: none; font-weight: 600; }
+        .note a:hover { text-decoration: underline; }
+        .alert {
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 13px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(59, 214, 164, 0.15);
+            color: #b3ffe0;
+        }
+        .alert.error { background: rgba(255,95,109,0.16); color: #ffd6dc; }
     </style>
 </head>
 <body>
-    <div class="auth-box">
-        <h2>Login</h2>
-        <?php if ($message !== ''): ?>
-            <div class="alert<?php echo isset($_GET['registered']) ? '' : ' error'; ?>"><?php echo htmlspecialchars($message); ?></div>
-        <?php endif; ?>
-        <form method="POST" action="login.php" autocomplete="off">
-            <div>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" required>
+    <div class="shell">
+        <div class="hero">
+            <div class="overlay">
+                <h1>Chào mừng trở lại</h1>
+                <p>Đăng nhập để theo dõi đơn và ưu đãi mới nhất.</p>
             </div>
-            <div>
-                <label for="password">Password</label>
-                <input id="password" name="password" type="password" required>
-            </div>
-            <button type="submit">Login</button>
-        </form>
-        <div class="note">No account? <a href="register.php">Register</a></div>
+        </div>
+        <div class="auth-box">
+            <h2>Đăng nhập</h2>
+            <p class="sub">Dùng email để tiếp tục.</p>
+            <?php if ($message !== ''): ?>
+                <div class="alert<?php echo isset($_GET['registered']) ? '' : ' error'; ?>"><?php echo htmlspecialchars($message); ?></div>
+            <?php endif; ?>
+            <form method="POST" action="login.php" autocomplete="off">
+                <div>
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" required>
+                </div>
+                <div>
+                    <label for="password">Mật khẩu</label>
+                    <input id="password" name="password" type="password" required>
+                </div>
+                <button type="submit">Tiếp tục</button>
+            </form>
+            <div class="note">Chưa có tài khoản? <a href="register.php">Đăng ký</a></div>
+        </div>
     </div>
 </body>
 </html>

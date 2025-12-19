@@ -163,6 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button type="submit">Tiếp tục</button>
             </form>
             <div class="note">Chưa có tài khoản? <a href="register.php">Đăng ký</a></div>
+            <div class="note">Quản trị viên? <a href="/admin/login.php">Đăng nhập admin</a></div>
         </div>
     </div>
 </body>

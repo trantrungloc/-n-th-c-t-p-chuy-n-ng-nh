@@ -2,13 +2,6 @@
         <div class="admin-content-left">
             <ul>
                 <li>
-                    <a href="#">Danh mục</a>
-                    <ul>
-                        <li><a href="cartegoryadd.php">Thêm Danh mục</a></li>
-                        <li><a href="cartegorylist.php">Danh Sách Danh mục</a></li>
-                    </ul>
-                </li>
-                <li>
                     <a href="#">Loại sản phẩm</a>
                     <ul>
                         <li><a href="brandadd.php">Thêm loại sản phẩm</a></li>

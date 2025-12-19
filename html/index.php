@@ -5,11 +5,18 @@ $userLoggedIn = Session::get('user_login');
 $userName = Session::get('user_name');
 require_once __DIR__ . '/../admin/class/brand_class.php';
 $brandClass = new brand();
+$categories = array();
+$categoryRows = $brandClass->show_cartegory();
+if ($categoryRows) {
+    while ($cat = $categoryRows->fetch_assoc()) {
+        $categories[] = $cat;
+    }
+}
 $brandRows = $brandClass->show_brand();
 $brandByCategory = array();
 if ($brandRows) {
     while ($row = $brandRows->fetch_assoc()) {
-        $catName = $row['cartegory_name'];
+        $catName = trim($row['cartegory_name']);
         if (!isset($brandByCategory[$catName])) {
             $brandByCategory[$catName] = array();
         }
@@ -35,28 +42,20 @@ if ($brandRows) {
             <img src="/images/logo.png" alt="">
         </div>
         <div class="menu">
-            <li><a href="#">NỮ</a>
-                <ul class="sub-menu">
-                    <?php if (!empty($brandByCategory['NỮ'])): ?>
-                        <?php foreach ($brandByCategory['NỮ'] as $brand): ?>
-                            <li><a href="/product.php?brand_id=<?php echo (int)$brand['brand_id']; ?>"><?php echo htmlspecialchars($brand['brand_name']); ?></a></li>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <li><span>Chưa có thương hiệu</span></li>
-                    <?php endif; ?>
-                </ul>
-            </li>
-            <li><a href="#">NAM</a>
-                <ul class="sub-menu">
-                    <?php if (!empty($brandByCategory['NAM'])): ?>
-                        <?php foreach ($brandByCategory['NAM'] as $brand): ?>
-                            <li><a href="/product.php?brand_id=<?php echo (int)$brand['brand_id']; ?>"><?php echo htmlspecialchars($brand['brand_name']); ?></a></li>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <li><span>Chưa có thương hiệu</span></li>
-                    <?php endif; ?>
-                </ul>
-            </li>
+            <?php foreach ($categories as $cat): ?>
+                <?php $catName = trim($cat['cartegory_name']); ?>
+                <li><a href="#"><?php echo htmlspecialchars($catName); ?></a>
+                    <ul class="sub-menu">
+                        <?php if (!empty($brandByCategory[$catName])): ?>
+                            <?php foreach ($brandByCategory[$catName] as $brand): ?>
+                                <li><a href="/product.php?brand_id=<?php echo (int)$brand['brand_id']; ?>"><?php echo htmlspecialchars($brand['brand_name']); ?></a></li>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <li><span>Chưa có thương hiệu</span></li>
+                        <?php endif; ?>
+                    </ul>
+                </li>
+            <?php endforeach; ?>
             <li><a href="#">BỘ SƯU TẬP</a></li>
             <li><a href="#">THÔNG TIN</a></li>
         </div>

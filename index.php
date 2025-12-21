@@ -60,6 +60,7 @@ if ($brandRows) {
             <?php endforeach; ?>
             <li><a href="#">Bộ sưu tập</a></li>
             <li><a href="#">Thông tin</a></li>
+           
       
           
         </ul>
@@ -74,7 +75,8 @@ if ($brandRows) {
                 <li><a href="/login.php" class="fas fa-user"></a></li>
                 <li><a href="/login.php" class="btn-login">Đăng nhập</a></li>
             <?php endif; ?>
-            <li><a href="/products.php" class="fas fa-shopping-bag"></a></li>
+            <li><a href="/products.php" class="fas fa-shopping-bag" title="Kho hàng"></a></li>
+            <li><a href="/cart.php" class="fas fa-shopping-cart" title="Giỏ hàng"></a></li>
         </ul>
     </header>
 

@@ -126,7 +126,8 @@ if ($filter_cartegory > 0) {
                 <li><a href="/login.php" class="fas fa-user"></a></li>
                 <li><a href="/login.php" class="btn-login">Đăng nhập</a></li>
             <?php endif; ?>
-            <li><a href="/products.php" class="fas fa-shopping-bag active"></a></li>
+            <li><a href="/products.php" class="fas fa-shopping-bag active" title="Kho hàng"></a></li>
+            <li><a href="/cart.php" class="fas fa-shopping-cart" title="Giỏ hàng"></a></li>
         </ul>
     </header>
 

@@ -1,9 +1,11 @@
 <?php
-require_once __DIR__ . '/../admin/session.php';
+// Load session and classes from the local admin folder (not parent dir)
+require_once __DIR__ . '/admin/session.php';
 Session::init();
 $userLoggedIn = Session::get('user_login');
 $userName = Session::get('user_name');
-require_once __DIR__ . '/../admin/class/brand_class.php';
+require_once __DIR__ . '/admin/class/brand_class.php';
+
 $brandClass = new brand();
 $categories = array();
 $categoryRows = $brandClass->show_cartegory();
@@ -41,7 +43,7 @@ if ($brandRows) {
         <div class="logo">
             <img src="/images/logo.png" alt="">
         </div>
-        <div class="menu">
+        <ul class="menu">
             <?php foreach ($categories as $cat): ?>
                 <?php $catName = trim($cat['cartegory_name']); ?>
                 <li><a href="#"><?php echo htmlspecialchars($catName); ?></a>
@@ -56,24 +58,22 @@ if ($brandRows) {
                     </ul>
                 </li>
             <?php endforeach; ?>
-            <li><a href="#">BỘ SƯU TẬP</a></li>
-            <li><a href="#">THÔNG TIN</a></li>
-        </div>
-        <div class="others">
-            <li><input type="text" placeholder="Tìm kiếm sản phẩm"><i href="" class="fas fa-search"></i></li>
+            <li><a href="#">Bộ sưu tập</a></li>
+            <li><a href="#">Thông tin</a></li>
+        </ul>
+        <ul class="others">
+            <li><input type="text" placeholder="Tìm kiếm..."><i class="fas fa-search"></i></li>
             <?php if ($userLoggedIn): ?>
-                <li style="display:flex; align-items:center; gap:8px;">
-                    <span style="font-weight:600; color:#333;">Xin chào, <?php echo htmlspecialchars($userName); ?></span>
-                    <a href="/logout.php" style="padding:6px 12px; border:1px solid #ddd; border-radius:16px; font-size:13px; color:#222; text-decoration:none;">Đăng xuất</a>
+                <li class="user-info">
+                    <span>Xin chào, <?php echo htmlspecialchars($userName); ?></span>
+                    <a href="/logout.php" class="btn-logout">Đăng xuất</a>
                 </li>
             <?php else: ?>
-                <li style="display:flex; align-items:center; gap:8px;">
-                    <a href="/login.php" class="fas fa-user" style="font-size:16px; color:#222;"></a>
-                    <a href="/login.php" style="display:inline-flex; align-items:center; padding:6px 14px; border:1px solid #e0e0e0; border-radius:16px; font-size:13px; font-weight:600; color:#222; text-decoration:none; box-shadow:0 2px 6px rgba(0,0,0,0.08); background:#fff;">Đăng nhập</a>
-                </li>
+                <li><a href="/login.php" class="fas fa-user"></a></li>
+                <li><a href="/login.php" class="btn-login">Đăng nhập</a></li>
             <?php endif; ?>
-            <li><a href="" class="fas fa-shopping-bag"></a></li>
-        </div>
+            <li><a href="/products.php" class="fas fa-shopping-bag"></a></li>
+        </ul>
     </header>
 
     <section id="Slider">
@@ -101,30 +101,25 @@ if ($brandRows) {
         </div>
     </section>
 
-    <!-------------------------------------- app-container------------------------------------------------->
-     <section class="app-container"> 
-        <p>Tải ứng dụng ZARA</p>
-        <div class="app-google">
-<img src="/images/appstore.png" alt="">
-<img src="/images/ggplay.png" alt="">
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Liên hệ</a>
+                <a href="#">Tuyển dụng</a>
+                <a href="#">Giới thiệu</a>
+                <a href="#">Chính sách</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-youtube"></a>
+            </div>
+            <p class="copyright">© 2025 ZARA Shop. All rights reserved.</p>
         </div>
-<p>Nhận bản tin ZARA</p>
-<input type="text"  placeholder="Nhập email của bạn...">
-     </section>
-    
-     <!----------------------------------------- footer--------------------------------------------------------->
-     <div class="footer-top">
-        <li><a href="">Liên hệ</a></li>
-        <li><a href="">Tuyển dụng</a></li>
-        <li><a href="">Giới thiệu</a></li>
-        <li>
-            <a href="" class="fab fa-facebook-f"></a>
-            <a href="" class="fab fa-twitter"></a>
-            <a href="" class="fab fa-youtube"></a>
-
-        </li>
-        </div>
-        </body>
+    </footer>
+</body>
 <script src="/js/sliderindex.js"></script>
 <script src="/js/rollindexheader.js"></script>
 

@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Session::set('user_id', $data['user_id']);
         Session::set('user_name', $data['name']);
         Session::set('user_email', $data['email']);
-        header('Location: html/index.php');
+        header('Location: /index.php');
         exit;
     }
     $message = $data;

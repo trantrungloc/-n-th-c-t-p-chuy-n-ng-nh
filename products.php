@@ -149,7 +149,7 @@ if ($filter_cartegory > 0) {
                         </li>
                         <?php foreach ($categories as $cat): ?>
                         <li class="category-item">
-                            <span class="category-title"><?php echo htmlspecialchars($cat['cartegory_name']); ?></span>
+                            <a href="/products.php?cartegory_id=<?php echo (int)$cat['cartegory_id']; ?>" class="category-title <?php echo $filter_cartegory == $cat['cartegory_id'] ? 'active' : ''; ?>"><?php echo htmlspecialchars($cat['cartegory_name']); ?></a>
                             <?php $catName = trim($cat['cartegory_name']); ?>
                             <?php if (!empty($brandByCategory[$catName])): ?>
                             <ul class="brand-list">

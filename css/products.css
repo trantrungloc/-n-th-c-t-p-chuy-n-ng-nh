@@ -65,15 +65,18 @@
     font-size: 14px;
     font-weight: 400;
     color: #1a1a1a;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease;
+    background: transparent !important;
 }
 
 .category-list > li > a:hover {
     color: #666;
+    background: transparent !important;
 }
 
 .category-list > li.active > a {
     color: #e74c3c;
+    background: transparent !important;
 }
 
 .category-title {
@@ -85,6 +88,18 @@
     text-transform: uppercase;
     border-top: 1px solid #eee;
     margin-top: 8px;
+    transition: color 0.2s ease;
+    background: transparent !important;
+}
+
+.category-title:hover {
+    color: #666;
+    background: transparent !important;
+}
+
+.category-title.active {
+    color: #e74c3c;
+    background: transparent !important;
 }
 
 .category-item:first-of-type .category-title {
@@ -108,14 +123,17 @@
     color: #1a1a1a;
     transition: color 0.2s ease;
     font-weight: 400;
+    background: transparent !important;
 }
 
 .brand-list li a:hover {
     color: #666;
+    background: transparent !important;
 }
 
 .brand-list li.active a {
     color: #e74c3c;
+    background: transparent !important;
 }
 
 /* Main Content */

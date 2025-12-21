@@ -46,11 +46,11 @@ if ($brandRows) {
         <ul class="menu">
             <?php foreach ($categories as $cat): ?>
                 <?php $catName = trim($cat['cartegory_name']); ?>
-                <li><a href="#"><?php echo htmlspecialchars($catName); ?></a>
+                <li><a href="/products.php?cartegory_id=<?php echo (int)$cat['cartegory_id']; ?>"><?php echo htmlspecialchars($catName); ?></a>
                     <ul class="sub-menu">
                         <?php if (!empty($brandByCategory[$catName])): ?>
                             <?php foreach ($brandByCategory[$catName] as $brand): ?>
-                                <li><a href="/product.php?brand_id=<?php echo (int)$brand['brand_id']; ?>"><?php echo htmlspecialchars($brand['brand_name']); ?></a></li>
+                                <li><a href="/products.php?brand_id=<?php echo (int)$brand['brand_id']; ?>"><?php echo htmlspecialchars($brand['brand_name']); ?></a></li>
                             <?php endforeach; ?>
                         <?php else: ?>
                             <li><span>Chưa có thương hiệu</span></li>
@@ -60,6 +60,8 @@ if ($brandRows) {
             <?php endforeach; ?>
             <li><a href="#">Bộ sưu tập</a></li>
             <li><a href="#">Thông tin</a></li>
+      
+          
         </ul>
         <ul class="others">
             <li><input type="text" placeholder="Tìm kiếm..."><i class="fas fa-search"></i></li>
